@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/hooks/use-language';
 import { LanguageSwitcher } from '@/components/language-switcher';
@@ -25,8 +24,6 @@ import {
   Mountain,
   Globe,
   Briefcase,
-  Sun,
-  Moon,
   Menu,
   X,
 } from 'lucide-react';
@@ -120,7 +117,6 @@ const ListItem = ({ className, title, href, icon: Icon, ...props }: any) => {
 
 export function Navbar() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useLanguage();
 
@@ -163,14 +159,12 @@ export function Navbar() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               ))}
-              
-              <NavigationMenuItem>
+　　 　 　 　 <NavigationMenuItem>
                 <Link href="/about" className={cn(navigationMenuTriggerStyle())}>
                   {t('menu.about')}
                 </Link>
               </NavigationMenuItem>
-              
-              <NavigationMenuItem>
+　　 　 　 　 <NavigationMenuItem>
                 <Link href="/contact" className={cn(navigationMenuTriggerStyle())}>
                   {t('menu.contact')}
                 </Link>
@@ -179,18 +173,6 @@ export function Navbar() {
           </NavigationMenu>
 
           <LanguageSwitcher />
-
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          >
-            {theme === 'dark' ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
         </div>
 
         {/* Mobile Navigation */}
@@ -244,17 +226,6 @@ export function Navbar() {
             
             <div className="flex items-center gap-4 pt-4 border-t">
               <LanguageSwitcher />
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              >
-                {theme === 'dark' ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
-              </Button>
             </div>
           </div>
         </motion.div>

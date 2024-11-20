@@ -113,6 +113,68 @@
     animation: heroZoom 20s ease-in-out infinite alternate;
   }
 
+  /* Hero Slider */
+  .hero-slider {
+    @apply relative w-full h-screen overflow-hidden;
+  }
+
+  .hero-slider-background {
+    @apply absolute inset-0 transition-opacity duration-500;
+  }
+
+  .hero-slider-content {
+    @apply relative h-full flex items-center;
+  }
+
+  .hero-slider-text {
+    @apply w-full lg:w-2/5 px-6 lg:px-12 text-white;
+  }
+
+  .hero-slider-thumbnails {
+    @apply absolute right-0 bottom-0 w-full lg:w-3/5 h-1/2;
+  }
+
+  .hero-slider-thumbnail {
+    @apply relative cursor-pointer transition-all duration-300;
+  }
+
+  .hero-slider-thumbnail-active {
+    @apply scale-110 opacity-100;
+  }
+
+  .hero-slider-thumbnail-inactive {
+    @apply scale-90 opacity-60;
+  }
+
+  .hero-slider-nav {
+    @apply absolute top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-sm
+    hover:bg-white/20 transition-colors duration-200 z-10;
+  }
+
+  .hero-slider-nav-left {
+    @apply left-4;
+  }
+
+  .hero-slider-nav-right {
+    @apply right-4;
+  }
+
+  .hero-slider-dots {
+    @apply absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10;
+  }
+
+  .hero-slider-dot {
+    @apply w-2 h-2 rounded-full transition-all duration-300;
+  }
+
+  .hero-slider-dot-active {
+    @apply bg-white w-4;
+  }
+
+  .hero-slider-dot-inactive {
+    @apply bg-white/50 hover:bg-white/75;
+  }
+
   /* Feature Cards */
   .feature-card {
     @apply p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1;

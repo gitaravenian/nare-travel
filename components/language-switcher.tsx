@@ -9,18 +9,27 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { languages } from '@/lib/translations';
 import { useLanguage } from '@/hooks/use-language';
-import { Globe } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export function LanguageSwitcher() {
   const { currentLanguage, setLanguage } = useLanguage();
 
   if (!languages) return null;
 
+  // Get current language display name
+  const currentLang = languages.find(lang => lang.code === currentLanguage);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
-          <Globe className="h-5 w-5" />
+        <Button 
+          variant="outline" 
+          className="min-w-[120px] justify-between gap-2 px-3 py-2"
+        >
+          <div className="flex items-center gap-2">
+            <span className="text-lg">{getFlagEmoji(currentLanguage)}</span>
+            <span className="font-medium">{currentLang?.name}</span>
+          </div>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -28,12 +37,27 @@ export function LanguageSwitcher() {
           <DropdownMenuItem
             key={lang.code}
             onClick={() => setLanguage(lang.code)}
-            className={currentLanguage === lang.code ? 'bg-accent' : ''}
+            className={cn(
+              "min-w-[160px] px-3 py-2",
+              currentLanguage === lang.code ? 'bg-accent' : ''
+            )}
           >
-            {lang.name}
+            <div className="flex items-center justify-between w-full">
+              <span className="font-medium">{lang.name}</span>
+              <span className="text-lg">{getFlagEmoji(lang.code)}</span>
+            </div>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
+}
+
+function getFlagEmoji(langCode: string): string {
+  const flags: Record<string, string> = {
+    'en': '🇬🇧',
+    'hy': '🇦🇲',
+    'ru': '🇷🇺'
+  };
+  return flags[langCode] || '🌐';
 }

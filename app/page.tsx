@@ -1,36 +1,15 @@
 "use client";
 
-import { useState, useCallback, useEffect } from 'react';
-import Image from 'next/image';
+import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import useEmblaCarousel from 'embla-carousel-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Plane, Building2, Globe, Calendar, CreditCard, Users, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Globe, Calendar, Star } from 'lucide-react';
 import { useImages } from '@/hooks/use-images';
 import { ImageWithFallback } from '@/components/image-with-fallback';
 import { useLanguage } from '@/hooks/use-language';
-
-interface SlideItem {
-  imageKey: keyof ReturnType<typeof useImages>['images'];
-  href: string;
-}
-
-const slides: SlideItem[] = [
-  {
-    imageKey: "heroVernissage",
-    href: "/armenia-tours"
-  },
-  {
-    imageKey: "heroNoravank",
-    href: "/armenia-tours"
-  },
-  {
-    imageKey: "heroGarni",
-    href: "/armenia-tours"
-  }
-];
+import { HeroSlider } from '@/components/hero-slider';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -55,90 +34,13 @@ const itemVariants = {
 };
 
 export default function Home() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true,
-    dragFree: true,
-    skipSnaps: false
-  });
-  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
-  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const { images } = useImages();
   const { t } = useLanguage();
-
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-    setPrevBtnEnabled(emblaApi.canScrollPrev());
-    setNextBtnEnabled(emblaApi.canScrollNext());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
-  }, [emblaApi, onSelect]);
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="overflow-hidden h-full w-full relative" ref={emblaRef}>
-          <div className="flex h-full">
-            {slides.map((slide, index) => (
-              <div key={index} className="flex-[0_0_100%] h-full min-w-0 relative flex align-middle">
-                <ImageWithFallback
-                  src={images[slide.imageKey]}
-                  fallbackKey="heroVernissage"
-                  alt={t(`home.slider.${index}.title`)}
-                  fill
-                  className="hero-image"
-                  priority={index === 0}
-                  sizes="100vw"
-                />
-                <div className="hero-overlay" />
-                <motion.div 
-                  className="hero-content"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: selectedIndex === index ? 1 : 0, y: selectedIndex === index ? 0 : 20 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                >
-                  <motion.h1 className="hero-title">
-                    {t(`home.slider.${index}.title`)}
-                  </motion.h1>
-                  <motion.p className="hero-subtitle">
-                    {t(`home.slider.${index}.subtitle`)}
-                  </motion.p>
-                  <motion.div className="hero-cta">
-                    <Button size="lg" variant="default" asChild>
-                      <Link href={slide.href} className="glow-effect">
-                        {t('home.slider.cta')}
-                      </Link>
-                    </Button>
-                  </motion.div>
-                </motion.div>
-              </div>
-            ))}
-          </div>
-          
-          {/* Slider Navigation */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === selectedIndex ? 'bg-white w-6' : 'bg-white/50'
-                }`}
-                onClick={() => emblaApi?.scrollTo(index)}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      <HeroSlider />
 
       {/* Features Section */}
       <motion.section 
