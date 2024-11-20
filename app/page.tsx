@@ -32,6 +32,28 @@ const slides: SlideItem[] = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
 export default function Home() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
@@ -65,13 +87,13 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="hero-section">
-        <div className="overflow-hidden h-full w-full" ref={emblaRef}>
+        <div className="overflow-hidden h-full w-full relative" ref={emblaRef}>
           <div className="flex h-full">
             {slides.map((slide, index) => (
-              <div key={index} className=" flex-[0_0_100%] h-full min-w-0 relative flex align-middle">
+              <div key={index} className="flex-[0_0_100%] h-full min-w-0 relative flex align-middle">
                 <ImageWithFallback
                   src={images[slide.imageKey]}
-                  fallbackKey="heroArmeniaMain"
+                  fallbackKey="heroVernissage"
                   alt={t(`home.slider.${index}.title`)}
                   fill
                   className="hero-image"
@@ -79,191 +101,184 @@ export default function Home() {
                   sizes="100vw"
                 />
                 <div className="hero-overlay" />
-                <div className="hero-content">
-                  <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: selectedIndex === index ? 1 : 0, y: selectedIndex === index ? 0 : 20 }}
-                    className="hero-title"
-                  >
+                <motion.div 
+                  className="hero-content"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: selectedIndex === index ? 1 : 0, y: selectedIndex === index ? 0 : 20 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                >
+                  <motion.h1 className="hero-title">
                     {t(`home.slider.${index}.title`)}
                   </motion.h1>
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: selectedIndex === index ? 1 : 0, y: selectedIndex === index ? 0 : 20 }}
-                    transition={{ delay: 0.2 }}
-                    className="hero-subtitle"
-                  >
+                  <motion.p className="hero-subtitle">
                     {t(`home.slider.${index}.subtitle`)}
                   </motion.p>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: selectedIndex === index ? 1 : 0, y: selectedIndex === index ? 0 : 20 }}
-                    transition={{ delay: 0.4 }}
-                    className="hero-cta"
-                  >
-                    <Button size="lg" asChild className="text-lg">
-                      <Link href={slide.href}>{t(`home.slider.${index}.cta`)}</Link>
+                  <motion.div className="hero-cta">
+                    <Button size="lg" variant="default" asChild>
+                      <Link href={slide.href} className="glow-effect">
+                        {t('home.slider.cta')}
+                      </Link>
                     </Button>
                   </motion.div>
-                </div>
+                </motion.div>
               </div>
             ))}
           </div>
-        </div>
-
-        <Button
-          variant="ghost"
-          size="icon"
-          className="carousel-nav-button carousel-nav-prev"
-          onClick={scrollPrev}
-          disabled={!prevBtnEnabled}
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="h-8 w-8" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="carousel-nav-button carousel-nav-next"
-          onClick={scrollNext}
-          disabled={!nextBtnEnabled}
-          aria-label="Next slide"
-        >
-          <ChevronRight className="h-8 w-8" />
-        </Button>
-      </section>
-
-      {/* Google Reviews Section */}
-      <section className="bg-muted section-padding">
-        <div className="container">
-          <div className="flex flex-col items-center justify-center text-center">
-            <h2 className="section-title">{t('home.reviews.title')}</h2>
-            <p className="section-subtitle">{t('home.reviews.subtitle')}</p>
-            <div className="flex items-center gap-1 mt-2">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-              ))}
-            </div>
+          
+          {/* Slider Navigation */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === selectedIndex ? 'bg-white w-6' : 'bg-white/50'
+                }`}
+                onClick={() => emblaApi?.scrollTo(index)}
+              />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="section-padding">
+      {/* Features Section */}
+      <motion.section 
+        className="py-20 bg-gradient-to-b from-background to-background/50"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="section-title">{t('home.services.title')}</h2>
-            <p className="section-subtitle">
-              {t('home.services.subtitle')}
+          <motion.div className="text-center mb-16" variants={itemVariants}>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">
+              {t('home.features.title')}
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              {t('home.features.subtitle')}
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
-              <ImageWithFallback
-                src={images.tourGarni}
-                fallbackKey="heroArmeniaMain"
-                alt={t('home.services.daily.title')}
-                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                width={400}
-                height={256}
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="text-xl font-bold mb-2">{t('home.services.daily.title')}</h3>
-                <p className="mb-4">{t('home.services.daily.description')}</p>
-                <Button asChild variant="secondary">
-                  <Link href="/armenia-tours/daily">{t('cta.learnMore')}</Link>
-                </Button>
-              </div>
-            </Card>
+            <motion.div variants={itemVariants}>
+              <Card className="feature-card">
+                <CardContent className="p-6">
+                  <div className="feature-icon-wrapper">
+                    <Globe className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-xl font-semibold mt-4">{t('home.features.explore.title')}</h3>
+                  <p className="mt-2 text-muted-foreground">{t('home.features.explore.description')}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
 
-            <Card className="relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
-              <ImageWithFallback
-                src={images.destinationDubai}
-                fallbackKey="heroArmeniaMain"
-                alt={t('home.services.international.title')}
-                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                width={400}
-                height={256}
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="text-xl font-bold mb-2">{t('home.services.international.title')}</h3>
-                <p className="mb-4">{t('home.services.international.description')}</p>
-                <Button asChild variant="secondary">
-                  <Link href="/services/outgoing-packages">{t('cta.learnMore')}</Link>
-                </Button>
-              </div>
-            </Card>
+            <motion.div variants={itemVariants}>
+              <Card className="feature-card">
+                <CardContent className="p-6">
+                  <div className="feature-icon-wrapper">
+                    <Calendar className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-xl font-semibold mt-4">{t('home.features.plan.title')}</h3>
+                  <p className="mt-2 text-muted-foreground">{t('home.features.plan.description')}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
 
-            <Card className="relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
-              <ImageWithFallback
-                src={images.serviceMice}
-                fallbackKey="heroArmeniaMain"
-                alt={t('home.services.business.title')}
-                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                width={400}
-                height={256}
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="text-xl font-bold mb-2">{t('home.services.business.title')}</h3>
-                <p className="mb-4">{t('home.services.business.description')}</p>
-                <Button asChild variant="secondary">
-                  <Link href="/b2b">{t('cta.learnMore')}</Link>
-                </Button>
-              </div>
-            </Card>
+            <motion.div variants={itemVariants}>
+              <Card className="feature-card">
+                <CardContent className="p-6">
+                  <div className="feature-icon-wrapper">
+                    <Star className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-xl font-semibold mt-4">{t('home.features.experience.title')}</h3>
+                  <p className="mt-2 text-muted-foreground">{t('home.features.experience.description')}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Why Choose Us Section */}
-      <section className="bg-muted section-padding">
+      {/* Services Section */}
+      <motion.section 
+        className="py-20 bg-gradient-to-t from-background/50 to-background"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="section-title">{t('home.whyChooseUs.title')}</h2>
-            <p className="section-subtitle">
-              {t('home.whyChooseUs.subtitle')}
+          <motion.div className="text-center mb-16" variants={itemVariants}>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">
+              {t('home.services.title')}
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              {t('home.services.subtitle')}
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center">
-              <CardContent className="pt-6">
-                <Users className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-lg font-semibold mb-2">{t('home.whyChooseUs.expertTeam.title')}</h3>
-                <p className="text-muted-foreground">{t('home.whyChooseUs.expertTeam.description')}</p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div variants={itemVariants}>
+              <Card className="service-card group">
+                <div className="relative overflow-hidden aspect-[4/3]">
+                  <ImageWithFallback
+                    src={images.tourGarni}
+                    fallbackKey="heroVernissage"
+                    alt={t('home.services.daily.title')}
+                    className="transform group-hover:scale-110 transition-transform duration-500"
+                    width={400}
+                    height={300}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <h3 className="text-xl font-semibold">{t('home.services.daily.title')}</h3>
+                    <p className="mt-2 text-sm text-white/80">{t('home.services.daily.description')}</p>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
 
-            <Card className="text-center">
-              <CardContent className="pt-6">
-                <Globe className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-lg font-semibold mb-2">{t('home.whyChooseUs.globalNetwork.title')}</h3>
-                <p className="text-muted-foreground">{t('home.whyChooseUs.globalNetwork.description')}</p>
-              </CardContent>
-            </Card>
+            <motion.div variants={itemVariants}>
+              <Card className="service-card group">
+                <div className="relative overflow-hidden aspect-[4/3]">
+                  <ImageWithFallback
+                    src={images.destinationDubai}
+                    fallbackKey="heroVernissage"
+                    alt={t('home.services.international.title')}
+                    className="transform group-hover:scale-110 transition-transform duration-500"
+                    width={400}
+                    height={300}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <h3 className="text-xl font-semibold">{t('home.services.international.title')}</h3>
+                    <p className="mt-2 text-sm text-white/80">{t('home.services.international.description')}</p>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
 
-            <Card className="text-center">
-              <CardContent className="pt-6">
-                <CreditCard className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-lg font-semibold mb-2">{t('home.whyChooseUs.securePayments.title')}</h3>
-                <p className="text-muted-foreground">{t('home.whyChooseUs.securePayments.description')}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardContent className="pt-6">
-                <Star className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-lg font-semibold mb-2">{t('home.whyChooseUs.bestValue.title')}</h3>
-                <p className="text-muted-foreground">{t('home.whyChooseUs.bestValue.description')}</p>
-              </CardContent>
-            </Card>
+            <motion.div variants={itemVariants}>
+              <Card className="service-card group">
+                <div className="relative overflow-hidden aspect-[4/3]">
+                  <ImageWithFallback
+                    src={images.serviceMice}
+                    fallbackKey="heroVernissage"
+                    alt={t('home.services.business.title')}
+                    className="transform group-hover:scale-110 transition-transform duration-500"
+                    width={400}
+                    height={300}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <h3 className="text-xl font-semibold">{t('home.services.business.title')}</h3>
+                    <p className="mt-2 text-sm text-white/80">{t('home.services.business.description')}</p>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }
