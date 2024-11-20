@@ -1,38 +1,39 @@
 export const images = {
   // Hero images
-  heroArmeniaMain: "https://images.unsplash.com/photo-1540990738477-3bb6bb016d38?auto=format&fit=crop&w=1920&q=80", // Khor Virap with Mt Ararat
-  heroGarni: "https://images.unsplash.com/photo-1601279114699-fdf65c37f650?auto=format&fit=crop&w=1920&q=80", // Garni Temple
-  heroKhorVirap: "https://images.unsplash.com/photo-1601755378985-ddb5657218eb?auto=format&fit=crop&w=1920&q=80", // Khor Virap close-up
-  heroSevan: "https://images.unsplash.com/photo-1589496933738-f5c27bc146e3?auto=format&fit=crop&w=1920&q=80", // Lake Sevan
-  heroTatev: "https://images.unsplash.com/photo-1589307357824-96e63ff87e33?auto=format&fit=crop&w=1920&q=80", // Tatev Monastery
+  heroVernissage: "https://nare.am/wp-content/uploads/2022/05/vernissage.jpg", // Vernissage
+  heroNoravank: "https://nare.am/wp-content/uploads/2022/02/Armenia-G-19-e1645769748907.jpg", // Noravank
+  heroGarni: "https://nare.am/wp-content/uploads/2020/06/Garni-1.jpg", // Garni Temple
+  heroKhorVirap: "https://nare.am/wp-content/uploads/2020/06/republic-square-in-yerevan-downtown-armenia-e1652434477957.jpg", // Republic Square
+  heroSevan: "https://nare.am/wp-content/uploads/2020/06/Lake-Sevan.jpg", // Lake Sevan
+  heroTatev: "https://nare.am/wp-content/uploads/2022/02/Armenia-G-16-e1645769995353.jpg", // Tatev
   
   // Tour images
-  tourGarni: "https://images.unsplash.com/photo-1601279114699-fdf65c37f650?auto=format&fit=crop&w=1200&q=80", // Garni Temple
-  tourKhorVirap: "https://images.unsplash.com/photo-1540990738477-3bb6bb016d38?auto=format&fit=crop&w=1200&q=80", // Khor Virap
-  tourSevan: "https://images.unsplash.com/photo-1589496933738-f5c27bc146e3?auto=format&fit=crop&w=1200&q=80", // Lake Sevan
-  tourDilijan: "https://images.unsplash.com/photo-1588588066453-c5c0278a1f0f?auto=format&fit=crop&w=1200&q=80", // Dilijan forest
-  tourNoravank: "https://images.unsplash.com/photo-1589307357824-96e63ff87e33?auto=format&fit=crop&w=1200&q=80", // Noravank Monastery
+  tourGarni: "https://nare.am/wp-content/uploads/2020/06/Garni.jpg", // Garni Temple
+  tourKhorVirap: "https://nare.am/wp-content/uploads/2022/02/Armenia-G-18-e1645769728739.jpg", // Khor Virap
+  tourSevan: "https://nare.am/wp-content/uploads/2020/06/Lake-Sevan.jpg", // Lake Sevan
+  tourDilijan: "https://nare.am/wp-content/uploads/2020/06/dilijan-national-park-hike-with-lake-parz.5e95b76ce248b-full.jpg", // Dilijan forest
+  tourNoravank: "https://nare.am/wp-content/uploads/2022/02/Armenia-G-19-e1645769748907.jpg", // Noravank
   
   // Service images
-  serviceFlight: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80", // Airplane view
-  serviceVisa: "https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&w=1200&q=80", // Passport and visa
-  serviceMice: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80", // Business meeting
-  serviceDmc: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80", // Business meeting
+  serviceFlight: "https://nare.am/wp-content/uploads/2022/05/vernissage.jpg", // Service image
+  serviceVisa: "https://nare.am/wp-content/uploads/2020/06/republic-square-in-yerevan-downtown-armenia-e1652434477957.jpg", // Service image
+  serviceMice: "https://nare.am/wp-content/uploads/2020/06/429_Djermouk_canyon_a_lentree_de_la_ville_vu_du_pont-scaled-1.jpg", // Service image
+  serviceDmc: "https://nare.am/wp-content/uploads/2022/02/Armenia-G-16-e1645769995353.jpg", // Service image
   
   // Destination images
-  destinationDubai: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80", // Dubai
-  destinationEurope: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=80", // Europe
-  destinationTurkey: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80", // Turkey
+  destinationDubai: "https://nare.am/wp-content/uploads/2022/02/Armenia-G-18-e1645769728739.jpg", // Destination image
+  destinationEurope: "https://nare.am/wp-content/uploads/2020/06/Lake-Sevan.jpg", // Destination image
+  destinationTurkey: "https://nare.am/wp-content/uploads/2022/02/Armenia-G-19-e1645769748907.jpg", // Destination image
   
   // Team images
-  teamOffice: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80", // Office team
-  teamMeeting: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80", // Team meeting
+  teamOffice: "https://nare.am/wp-content/uploads/2020/06/dilijan-national-park-hike-with-lake-parz.5e95b76ce248b-full.jpg", // Team image
+  teamMeeting: "https://nare.am/wp-content/uploads/2020/06/429_Djermouk_canyon_a_lentree_de_la_ville_vu_du_pont-scaled-1.jpg", // Team image
   
   // Adventure images
-  adventureHiking: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80", // Hiking
-  adventureCamping: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=1200&q=80", // Camping
+  adventureHiking: "https://nare.am/wp-content/uploads/2020/06/dilijan-national-park-hike-with-lake-parz.5e95b76ce248b-full.jpg", // Hiking
+  adventureCamping: "https://nare.am/wp-content/uploads/2020/06/Lake-Sevan.jpg", // Camping
   
   // Cultural images
-  culturalMonastery: "https://images.unsplash.com/photo-1601279114699-fdf65c37f650?auto=format&fit=crop&w=1200&q=80", // Monastery
-  culturalFestival: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80", // Festival
+  culturalMonastery: "https://nare.am/wp-content/uploads/2022/02/Armenia-G-16-e1645769995353.jpg", // Monastery
+  culturalFestival: "https://nare.am/wp-content/uploads/2022/05/vernissage.jpg", // Festival
 } as const;

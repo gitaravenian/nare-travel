@@ -19,16 +19,16 @@ interface SlideItem {
 
 const slides: SlideItem[] = [
   {
-    imageKey: "heroArmeniaMain",
+    imageKey: "heroVernissage",
     href: "/armenia-tours"
   },
   {
-    imageKey: "serviceFlight",
-    href: "/services/outgoing-packages"
+    imageKey: "heroNoravank",
+    href: "/armenia-tours"
   },
   {
-    imageKey: "serviceMice",
-    href: "/b2b"
+    imageKey: "heroGarni",
+    href: "/armenia-tours"
   }
 ];
 
