@@ -835,115 +835,264 @@
   @apply flex items-center justify-center w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400;
 }
 
-/* Footer Background Animations */
+/* Gradient Animations */
 @keyframes gradient-x {
-  0% {
+  0%, 100% {
     background-position: 0% 50%;
   }
   50% {
     background-position: 100% 50%;
   }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 @keyframes gradient-y {
-  0% {
+  0%, 100% {
     background-position: 50% 0%;
   }
   50% {
     background-position: 50% 100%;
   }
-  100% {
-    background-position: 50% 0%;
-  }
 }
 
+.animate-gradient-x {
+  animation: gradient-x 15s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-gradient-y {
+  animation: gradient-y 15s ease infinite;
+  background-size: 200% 200%;
+}
+
+/* Floating Animation */
 @keyframes float {
-  0% {
-    transform: translate(0px, 0px);
-  }
-  25% {
-    transform: translate(-10px, -15px);
+  0%, 100% {
+    transform: translateY(0);
   }
   50% {
-    transform: translate(-5px, 10px);
-  }
-  75% {
-    transform: translate(10px, -5px);
-  }
-  100% {
-    transform: translate(0px, 0px);
+    transform: translateY(-20px);
   }
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 0.3;
-    transform: scale(1) translate(-50%, -50%);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(1.05) translate(-48%, -48%);
-  }
-  100% {
-    opacity: 0.3;
-    transform: scale(1) translate(-50%, -50%);
-  }
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 7s ease-in-out infinite;
+  animation-delay: -3.5s;
+}
+
+/* Shimmer Effect */
 @keyframes shimmer {
   0% {
     transform: translateX(-100%);
   }
-  50% {
-    transform: translateX(100%);
-  }
   100% {
     transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}
+
+/* Contact Icon Wrapper */
+.contact-icon-wrapper {
+  @apply w-8 h-8 rounded-lg flex items-center justify-center bg-blue-500/10;
+}
+
+/* Social Icons */
+.social-icon-wrapper {
+  @apply relative w-10 h-10 rounded-lg flex items-center justify-center transition-transform duration-300;
+}
+
+.social-icon-inner {
+  @apply w-full h-full rounded-lg flex items-center justify-center transition-colors duration-300;
+  background-color: rgba(var(--hover-color), 0.1);
+}
+
+.social-icon-wrapper:hover .social-icon-inner {
+  background-color: rgba(var(--hover-color), 0.2);
+}
+
+/* Quick Links */
+.quick-link-item {
+  @apply flex items-center text-gray-300 hover:text-white transition-colors duration-300 py-2;
+}
+
+/* Contact Items */
+.contact-item {
+  @apply flex items-center text-gray-300 space-x-3;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1B1E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4B5563;
+}
+
+/* Blur Effects */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(8px);
+}
+
+.backdrop-blur-lg {
+  backdrop-filter: blur(16px);
+}
+
+/* Gradient Text */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400;
+}
+
+/* Footer Background Animations */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gradient-y {
+  0%, 100% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 50% 100%;
   }
 }
 
 .animate-gradient-x {
   animation: gradient-x 15s ease infinite;
-  background-size: 400% 400%;
+  background-size: 200% 200%;
 }
 
 .animate-gradient-y {
   animation: gradient-y 15s ease infinite;
-  background-size: 400% 400%;
+  background-size: 200% 200%;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 .animate-float-slow {
-  animation: float 20s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
 
 .animate-float-delayed {
-  animation: float 25s ease-in-out infinite reverse;
-  animation-delay: -10s;
+  animation: float 7s ease-in-out infinite;
+  animation-delay: -3.5s;
 }
 
-.animate-pulse-slow {
-  animation: pulse 10s ease-in-out infinite;
+/* Shimmer Effect */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .animate-shimmer {
-  animation: shimmer 8s ease-in-out infinite;
+  animation: shimmer 2.5s infinite;
 }
 
-/* Enhanced backdrop blur */
-.backdrop-blur-custom {
-  backdrop-filter: blur(5px) saturate(150%);
-  -webkit-backdrop-filter: blur(5px) saturate(150%);
+/* Contact Icon Wrapper */
+.contact-icon-wrapper {
+  @apply w-8 h-8 rounded-lg flex items-center justify-center bg-blue-500/10;
 }
 
-/* Gradient utilities */
-.bg-gradient-radial {
-  background-image: radial-gradient(circle at center, var(--tw-gradient-from) 0%, var(--tw-gradient-via) 50%, var(--tw-gradient-to) 100%);
+/* Social Icons */
+.social-icon-wrapper {
+  @apply relative w-10 h-10 rounded-lg flex items-center justify-center transition-transform duration-300;
 }
 
-/* Blend mode utilities */
-.mix-blend-soft-light {
-  mix-blend-mode: soft-light;
+.social-icon-inner {
+  @apply w-full h-full rounded-lg flex items-center justify-center transition-colors duration-300;
+  background-color: rgba(var(--hover-color), 0.1);
+}
+
+.social-icon-wrapper:hover .social-icon-inner {
+  background-color: rgba(var(--hover-color), 0.2);
+}
+
+/* Quick Links */
+.quick-link-item {
+  @apply flex items-center text-gray-300 hover:text-white transition-colors duration-300 py-2;
+}
+
+/* Contact Items */
+.contact-item {
+  @apply flex items-center text-gray-300 space-x-3;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1B1E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4B5563;
+}
+
+/* Blur Effects */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(8px);
+}
+
+.backdrop-blur-lg {
+  backdrop-filter: blur(16px);
+}
+
+/* Gradient Text */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400;
 }

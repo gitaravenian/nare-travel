@@ -1,23 +1,28 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { 
-  Facebook, 
-  Instagram, 
-  Twitter, 
-  MapPin, 
+import {
+  Building2 as Building,
+  CalendarDays as Calendar,
+  Users2 as Users,
+  Car,
+  UtensilsCrossed as Utensils,
+  Plane,
+  Map,
+  Navigation,
+  Palmtree,
+  Luggage,
+  Anchor,
+  Globe,
+  Mountain,
+  Facebook,
+  Instagram,
+  Linkedin,
   Phone,
   Mail,
   ChevronRight,
-  Globe,
   Wine,
-  Mountain,
-  Building,
-  Calendar,
-  Users,
-  Car,
-  Utensils
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const listVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -51,7 +56,7 @@ const titleVariants = {
 const socialLinks = [
   { Icon: Facebook, href: '#', color: '#1877f2', label: 'Facebook' },
   { Icon: Instagram, href: '#', color: '#e4405f', label: 'Instagram' },
-  { Icon: Twitter, href: '#', color: '#1da1f2', label: 'Twitter' }
+  { Icon: Linkedin, href: '#', color: '#0A66C2', label: 'LinkedIn' }
 ];
 
 const tourTypes = [
@@ -68,7 +73,7 @@ const services = [
   { icon: Utensils, label: 'Food Tours', href: '/services/food' }
 ];
 
-const FooterColumn = ({ title, children }: { title: string; children: React.ReactNode }) => (
+const FooterColumn = ({ title, children }: { title: string | JSX.Element; children: React.ReactNode }) => (
   <motion.div
     variants={listVariants}
     initial="hidden"
@@ -77,12 +82,7 @@ const FooterColumn = ({ title, children }: { title: string; children: React.Reac
     className="space-y-6"
   >
     <motion.div className="relative inline-block">
-      <motion.h3 
-        variants={titleVariants}
-        className="text-xl font-semibold bg-gradient-to-r from-blue-400 via-purple-400 to-orange-400 text-transparent bg-clip-text"
-      >
-        {title}
-      </motion.h3>
+      {title}
       <motion.div 
         initial={{ width: 0 }}
         animate={{ width: "2rem" }}
@@ -94,6 +94,17 @@ const FooterColumn = ({ title, children }: { title: string; children: React.Reac
   </motion.div>
 );
 
+const FooterTitle = ({ children }: { children: React.ReactNode }) => (
+  <motion.span 
+    className="bg-clip-text text-transparent bg-gradient-to-r from-[#3B82F6] via-[#6366F1] to-[#8B5CF6] text-xl font-semibold"
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    {children}
+  </motion.span>
+);
+
 export function Footer() {
   return (
     <footer className="relative bg-[#1A1B1E] overflow-hidden">
@@ -102,6 +113,129 @@ export function Footer() {
         {/* Base gradient layer */}
         <div className="absolute inset-0 bg-gradient-radial from-[#1A1B1E] via-[#1F2937] to-[#111827]" />
         
+        {/* Floating Icons */}
+        <div className="absolute inset-0 pointer-events-none select-none">
+          <motion.div 
+            className="absolute top-[10%] left-[15%] text-white/5"
+            animate={{ 
+              y: [-20, 0, -20],
+              opacity: [0.02, 0.04, 0.02]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Plane className="w-12 h-12 rotate-45" />
+          </motion.div>
+
+          <motion.div 
+            className="absolute top-[30%] right-[20%] text-white/5"
+            animate={{ 
+              y: [0, -20, 0],
+              opacity: [0.02, 0.04, 0.02]
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Anchor className="w-10 h-10" />
+          </motion.div>
+
+          <motion.div 
+            className="absolute bottom-[20%] left-[25%] text-white/5"
+            animate={{ 
+              y: [-15, 5, -15],
+              opacity: [0.02, 0.04, 0.02]
+            }}
+            transition={{
+              duration: 9,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Globe className="w-14 h-14" />
+          </motion.div>
+
+          <motion.div 
+            className="absolute top-[60%] right-[30%] text-white/5"
+            animate={{ 
+              y: [5, -15, 5],
+              opacity: [0.02, 0.04, 0.02]
+            }}
+            transition={{
+              duration: 11,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Navigation className="w-12 h-12" />
+          </motion.div>
+
+          <motion.div 
+            className="absolute bottom-[40%] left-[40%] text-white/5"
+            animate={{ 
+              y: [-10, 10, -10],
+              opacity: [0.02, 0.04, 0.02]
+            }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Map className="w-10 h-10" />
+          </motion.div>
+
+          <motion.div 
+            className="absolute top-[40%] left-[20%] text-white/5"
+            animate={{ 
+              y: [0, -20, 0],
+              opacity: [0.02, 0.04, 0.02]
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Palmtree className="w-12 h-12" />
+          </motion.div>
+
+          <motion.div 
+            className="absolute bottom-[30%] right-[25%] text-white/5"
+            animate={{ 
+              y: [-15, 5, -15],
+              opacity: [0.02, 0.04, 0.02]
+            }}
+            transition={{
+              duration: 9.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Luggage className="w-10 h-10" />
+          </motion.div>
+
+          <motion.div 
+            className="absolute top-[25%] left-[35%] text-white/5"
+            animate={{ 
+              y: [-12, 8, -12],
+              opacity: [0.02, 0.04, 0.02]
+            }}
+            transition={{
+              duration: 13,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Mountain className="w-12 h-12" />
+          </motion.div>
+        </div>
+
         {/* Animated color layers */}
         <div className="absolute inset-0">
           {/* Elegant moving gradients */}
@@ -135,7 +269,7 @@ export function Footer() {
       <div className="relative max-w-7xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* About Section */}
-          <FooterColumn title="Nare Travel">
+          <FooterColumn title={<FooterTitle>Nare Travel</FooterTitle>}>
             <motion.p 
               variants={itemVariants}
               className="text-gray-300 leading-relaxed"
@@ -170,7 +304,7 @@ export function Footer() {
           </FooterColumn>
 
           {/* Tour Types */}
-          <FooterColumn title="Tour Types">
+          <FooterColumn title={<FooterTitle>Tour Types</FooterTitle>}>
             <motion.div 
               variants={listVariants}
               className="space-y-3"
@@ -195,7 +329,7 @@ export function Footer() {
           </FooterColumn>
 
           {/* Services */}
-          <FooterColumn title="Our Services">
+          <FooterColumn title={<FooterTitle>Our Services</FooterTitle>}>
             <motion.div 
               variants={listVariants}
               className="space-y-3"
@@ -220,13 +354,13 @@ export function Footer() {
           </FooterColumn>
 
           {/* Contact Info */}
-          <FooterColumn title="Contact Us">
+          <FooterColumn title={<FooterTitle>Contact Us</FooterTitle>}>
             <motion.div 
               variants={listVariants}
               className="space-y-4"
             >
               {[
-                { Icon: MapPin, text: '123 Travel Street, Yerevan, Armenia' },
+                { Icon: Map, text: '123 Travel Street, Yerevan, Armenia' },
                 { Icon: Phone, text: '+374 XX XXX XXX' },
                 { Icon: Mail, text: 'info@naretravel.com' }
               ].map((contact, index) => (
