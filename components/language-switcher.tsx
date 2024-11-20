@@ -10,6 +10,7 @@ import {
 import { languages } from '@/lib/translations';
 import { useLanguage } from '@/hooks/use-language';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 export function LanguageSwitcher() {
   const { currentLanguage, setLanguage } = useLanguage();
@@ -27,7 +28,13 @@ export function LanguageSwitcher() {
           className="min-w-[120px] justify-between gap-2 px-3 py-2"
         >
           <div className="flex items-center gap-2">
-            <span className="text-lg">{getFlagEmoji(currentLanguage)}</span>
+            <Image 
+              src={`/flags/${currentLanguage}.svg`}
+              alt={currentLang?.name || ''}
+              width={24}
+              height={18}
+              className="rounded-sm object-cover"
+            />
             <span className="font-medium">{currentLang?.name}</span>
           </div>
         </Button>
@@ -42,9 +49,15 @@ export function LanguageSwitcher() {
               currentLanguage === lang.code ? 'bg-accent' : ''
             )}
           >
-            <div className="flex items-center justify-between w-full">
+            <div className="flex items-center justify-between w-full gap-2">
               <span className="font-medium">{lang.name}</span>
-              <span className="text-lg">{getFlagEmoji(lang.code)}</span>
+              <Image 
+                src={`/flags/${lang.code}.svg`}
+                alt={lang.name}
+                width={24}
+                height={18}
+                className="rounded-sm object-cover"
+              />
             </div>
           </DropdownMenuItem>
         ))}

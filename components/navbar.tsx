@@ -137,13 +137,13 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center gap-4">
           <NavigationMenu>
-            <NavigationMenuList>
+            <NavigationMenuList className="gap-2">
               {menuItems.map((item) => (
                 <NavigationMenuItem key={item.trigger}>
                   <Link href={item.href} legacyBehavior passHref>
-                    <NavigationMenuTrigger>{t(`menu.${item.trigger}`)}</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className="px-4">{t(`menu.${item.trigger}`)}</NavigationMenuTrigger>
                   </Link>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
@@ -159,13 +159,13 @@ export function Navbar() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               ))}
-　　 　 　 　 <NavigationMenuItem>
-                <Link href="/about" className={cn(navigationMenuTriggerStyle())}>
+              <NavigationMenuItem>
+                <Link href="/about" className={cn(navigationMenuTriggerStyle(), "px-4")}>
                   {t('menu.about')}
                 </Link>
               </NavigationMenuItem>
-　　 　 　 　 <NavigationMenuItem>
-                <Link href="/contact" className={cn(navigationMenuTriggerStyle())}>
+              <NavigationMenuItem>
+                <Link href="/contact" className={cn(navigationMenuTriggerStyle(), "px-4")}>
                   {t('menu.contact')}
                 </Link>
               </NavigationMenuItem>
