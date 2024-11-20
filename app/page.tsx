@@ -41,7 +41,7 @@ export default function Home() {
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const { getImageUrl } = useImages();
+  const { images } = useImages();
   const { t } = useLanguage();
 
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
@@ -70,7 +70,7 @@ export default function Home() {
             {slides.map((slide, index) => (
               <div key={index} className=" flex-[0_0_100%] h-full min-w-0 relative flex align-middle">
                 <ImageWithFallback
-                  src={getImageUrl(slide.imageKey)}
+                  src={images[slide.imageKey]}
                   fallbackKey="heroArmeniaMain"
                   alt={t(`home.slider.${index}.title`)}
                   fill
@@ -162,7 +162,7 @@ export default function Home() {
             <Card className="relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
               <ImageWithFallback
-                src={getImageUrl('tourGarni')}
+                src={images.tourGarni}
                 fallbackKey="heroArmeniaMain"
                 alt={t('home.services.daily.title')}
                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
@@ -181,7 +181,7 @@ export default function Home() {
             <Card className="relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
               <ImageWithFallback
-                src={getImageUrl('destinationDubai')}
+                src={images.destinationDubai}
                 fallbackKey="heroArmeniaMain"
                 alt={t('home.services.international.title')}
                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
@@ -200,7 +200,7 @@ export default function Home() {
             <Card className="relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
               <ImageWithFallback
-                src={getImageUrl('serviceMice')}
+                src={images.serviceMice}
                 fallbackKey="heroArmeniaMain"
                 alt={t('home.services.business.title')}
                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
