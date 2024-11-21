@@ -27,6 +27,8 @@ import {
   Menu,
   X,
 } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { BookNowButton } from './book-now-button';
 
 const menuItems = [
   {
@@ -118,9 +120,20 @@ const ListItem = ({ className, title, href, icon: Icon, ...props }: any) => {
 export function Navbar() {
   const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { t } = useLanguage();
+  const pathname = usePathname();
 
   useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (!mounted) return null;
 
@@ -129,30 +142,49 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      className={cn(
+        "sticky top-0 z-50 w-full border-b transition-all duration-300",
+        isScrolled 
+          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-border" 
+          : "bg-background/0 border-transparent"
+      )}
     >
-      <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="font-bold">Nare Travel</span>
+      <div className="container flex h-20 items-center justify-between">
+        <Link href="/" className="flex items-center">
+          <img 
+            src="/logo.png" 
+            alt="Nare Travel" 
+            className="h-14 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-6">
           <NavigationMenu>
             <NavigationMenuList className="gap-2">
               {menuItems.map((item) => (
                 <NavigationMenuItem key={item.trigger}>
                   <Link href={item.href} legacyBehavior passHref>
-                    <NavigationMenuTrigger className="px-4">{t(`menu.${item.trigger}`)}</NavigationMenuTrigger>
+                    <NavigationMenuTrigger 
+                      className={cn(
+                        "px-4 transition-colors",
+                        pathname.startsWith(item.href) && "text-primary font-medium"
+                      )}
+                    >
+                      {t(`menu.${item.trigger}`)}
+                    </NavigationMenuTrigger>
                   </Link>
                   <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                    <ul className="grid w-[400px] gap-3 p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px] rounded-lg">
                       {item.content.map((subItem) => (
                         <ListItem
                           key={subItem.title}
                           title={subItem.title}
                           href={subItem.href}
                           icon={subItem.icon}
+                          className={cn(
+                            pathname === subItem.href && "bg-accent"
+                          )}
                         />
                       ))}
                     </ul>
@@ -160,76 +192,132 @@ export function Navbar() {
                 </NavigationMenuItem>
               ))}
               <NavigationMenuItem>
-                <Link href="/about" className={cn(navigationMenuTriggerStyle(), "px-4")}>
+                <Link 
+                  href="/about" 
+                  className={cn(
+                    navigationMenuTriggerStyle(), 
+                    "px-4",
+                    pathname === '/about' && "text-primary font-medium"
+                  )}
+                >
                   {t('menu.about')}
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/contact" className={cn(navigationMenuTriggerStyle(), "px-4")}>
+                <Link 
+                  href="/contact" 
+                  className={cn(
+                    navigationMenuTriggerStyle(), 
+                    "px-4",
+                    pathname === '/contact' && "text-primary font-medium"
+                  )}
+                >
                   {t('menu.contact')}
                 </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
 
-          <LanguageSwitcher />
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
+            <BookNowButton variant="default" size="sm" />
+          </div>
         </div>
 
         {/* Mobile Navigation */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? (
-            <X className="h-5 w-5" />
-          ) : (
-            <Menu className="h-5 w-5" />
-          )}
-        </Button>
+        <div className="flex items-center gap-4 md:hidden">
+          <LanguageSwitcher />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="relative"
+          >
+            <div className={cn(
+              "absolute inset-0 flex items-center justify-center transition-opacity",
+              isMenuOpen ? "opacity-100" : "opacity-0"
+            )}>
+              <X className="h-5 w-5" />
+            </div>
+            <div className={cn(
+              "flex items-center justify-center transition-opacity",
+              isMenuOpen ? "opacity-0" : "opacity-100"
+            )}>
+              <Menu className="h-5 w-5" />
+            </div>
+          </Button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="md:hidden border-t"
-        >
-          <div className="container py-4 space-y-4">
-            {menuItems.map((item) => (
-              <div key={item.trigger} className="space-y-2">
-                <div className="font-medium">{t(`menu.${item.trigger}`)}</div>
-                <div className="pl-4 space-y-2">
-                  {item.content.map((subItem) => (
-                    <Link 
-                      key={subItem.title}
-                      href={subItem.href}
-                      className="flex items-center gap-2 py-2 text-sm text-muted-foreground hover:text-foreground"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <subItem.icon className="h-4 w-4" />
-                      {t(`menu.${subItem.title}`)}
-                    </Link>
-                  ))}
-                </div>
+      <motion.div
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ 
+          height: isMenuOpen ? "auto" : 0,
+          opacity: isMenuOpen ? 1 : 0
+        }}
+        transition={{ duration: 0.3 }}
+        className="md:hidden overflow-hidden bg-background border-t"
+      >
+        <div className="container py-6 space-y-6">
+          {menuItems.map((item) => (
+            <div key={item.trigger} className="space-y-3">
+              <Link
+                href={item.href}
+                className={cn(
+                  "flex items-center justify-between font-medium",
+                  pathname.startsWith(item.href) && "text-primary"
+                )}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t(`menu.${item.trigger}`)}
+              </Link>
+              <div className="pl-4 space-y-3">
+                {item.content.map((subItem) => (
+                  <Link 
+                    key={subItem.title}
+                    href={subItem.href}
+                    className={cn(
+                      "flex items-center gap-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors",
+                      pathname === subItem.href && "text-primary font-medium"
+                    )}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <subItem.icon className="h-4 w-4" />
+                    {t(`menu.${subItem.title}`)}
+                  </Link>
+                ))}
               </div>
-            ))}
-            <Link href="/about" className="block py-2" onClick={() => setIsMenuOpen(false)}>
+            </div>
+          ))}
+          <div className="space-y-3">
+            <Link 
+              href="/about" 
+              className={cn(
+                "block py-2 hover:text-primary transition-colors",
+                pathname === '/about' && "text-primary font-medium"
+              )}
+              onClick={() => setIsMenuOpen(false)}
+            >
               {t('menu.about')}
             </Link>
-            <Link href="/contact" className="block py-2" onClick={() => setIsMenuOpen(false)}>
+            <Link 
+              href="/contact" 
+              className={cn(
+                "block py-2 hover:text-primary transition-colors",
+                pathname === '/contact' && "text-primary font-medium"
+              )}
+              onClick={() => setIsMenuOpen(false)}
+            >
               {t('menu.contact')}
             </Link>
-            
-            <div className="flex items-center gap-4 pt-4 border-t">
-              <LanguageSwitcher />
-            </div>
           </div>
-        </motion.div>
-      )}
+          
+          <div className="pt-6 border-t">
+            <BookNowButton className="w-full" />
+          </div>
+        </div>
+      </motion.div>
     </motion.nav>
   );
 }
