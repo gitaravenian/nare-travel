@@ -34,29 +34,20 @@ export const useLanguage = create<LanguageStore>()(
         }
       },
       getCurrentLanguage: () => get().currentLanguage,
-      t: (key: string) => {
+      t: (key: string): string => {
         try {
           const keys = key.split('.');
-          let current: any = translations[get().currentLanguage] || translations.en;
+          let current = translations[get().currentLanguage as keyof typeof translations] || translations.en;
           
           for (const k of keys) {
-            if (current === undefined || current[k] === undefined) {
-              // Fallback to English
-              current = translations.en;
-              for (const fallbackKey of keys) {
-                if (current === undefined || current[fallbackKey] === undefined) {
-                  console.warn(`Translation missing for key: ${key}`);
-                  return key;
-                }
-                current = current[fallbackKey];
-              }
-              return current;
+            if (current === undefined || (current as any)[k] === undefined) {
+              return key;
             }
-            current = current[k];
+            current = (current as any)[k];
           }
-          return current;
+          return String(current);
         } catch (error) {
-          console.error(`Error getting translation for key: ${key}`, error);
+          console.error('Translation error:', error);
           return key;
         }
       }

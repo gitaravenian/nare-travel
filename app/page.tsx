@@ -52,7 +52,7 @@ export default function Home() {
       >
         <div className="container">
           <motion.div className="text-center mb-16" variants={itemVariants}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-br from-[#AE1F23] to-[#592641]">
               {t('home.features.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -65,7 +65,7 @@ export default function Home() {
               <Card className="feature-card">
                 <CardContent className="p-6">
                   <div className="feature-icon-wrapper">
-                    <Globe className="h-8 w-8" />
+                    <Globe className="h-8 w-8 text-[#AE1F23]" />
                   </div>
                   <h3 className="text-xl font-semibold mt-4">{t('home.features.explore.title')}</h3>
                   <p className="mt-2 text-muted-foreground">{t('home.features.explore.description')}</p>
@@ -77,7 +77,7 @@ export default function Home() {
               <Card className="feature-card">
                 <CardContent className="p-6">
                   <div className="feature-icon-wrapper">
-                    <Calendar className="h-8 w-8" />
+                    <Calendar className="h-8 w-8 text-[#AE1F23]" />
                   </div>
                   <h3 className="text-xl font-semibold mt-4">{t('home.features.plan.title')}</h3>
                   <p className="mt-2 text-muted-foreground">{t('home.features.plan.description')}</p>
@@ -89,7 +89,7 @@ export default function Home() {
               <Card className="feature-card">
                 <CardContent className="p-6">
                   <div className="feature-icon-wrapper">
-                    <Star className="h-8 w-8" />
+                    <Star className="h-8 w-8 text-[#AE1F23]" />
                   </div>
                   <h3 className="text-xl font-semibold mt-4">{t('home.features.experience.title')}</h3>
                   <p className="mt-2 text-muted-foreground">{t('home.features.experience.description')}</p>
@@ -110,7 +110,7 @@ export default function Home() {
       >
         <div className="container">
           <motion.div className="text-center mb-16" variants={itemVariants}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-br from-[#AE1F23] to-[#592641]">
               {t('home.services.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

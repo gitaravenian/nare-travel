@@ -63,6 +63,22 @@ export const translations = {
       reviews: {
         title: "What Our Clients Say",
         subtitle: "Read reviews from our satisfied customers"
+      },
+      features: {
+        title: "Why Travel With Us",
+        subtitle: "Discover the unique benefits of choosing our travel services",
+        explore: {
+          title: "Global Destinations",
+          description: "Access to worldwide destinations and exclusive experiences"
+        },
+        plan: {
+          title: "Expert Planning",
+          description: "Professional travel planning tailored to your needs"
+        },
+        experience: {
+          title: "Quality Experience",
+          description: "Unforgettable moments and premium service guaranteed"
+        }
       }
     },
     menu: {
@@ -533,6 +549,22 @@ export const translations = {
       reviews: {
         title: "Հաճախորդների Կարծիքները",
         subtitle: "Կարդացեք մեր գոհ հաճախորդների կարծիքները"
+      },
+      features: {
+        title: "Ինչու Ճամփորդել Մեզ Հետ",
+        subtitle: "Բացահայտեք մեր ճամփորդական ծառայությունների յուրահատուկ առավելությունները",
+        explore: {
+          title: "Գլոբալ Ուղղություններ",
+          description: "Հասանելիություն դեպի համաշխարհային ուղղություններ և բացառիկ փորձառություններ"
+        },
+        plan: {
+          title: "Փորձառու Պլանավորում",
+          description: "Պրոֆեսիոնալ ճամփորդական պլանավորում՝ հարմարեցված Ձեր կարիքներին"
+        },
+        experience: {
+          title: "Որակյալ Փորձառություն",
+          description: "Անմոռանալի պահեր և երաշխավորված պրեմիում սպասարկում"
+        }
       }
     },
     menu: {
@@ -966,7 +998,7 @@ export const translations = {
       },
       services: {
         title: "Наши Услуги",
-        subtitle: "Профессиональные туристические услуги",
+        subtitle: "Комплексные туристические решения для всех ваших потребностей",
         daily: {
           title: "Однодневные Туры",
           description: "Откройте для себя самые красивые места Армении"
@@ -975,9 +1007,9 @@ export const translations = {
           title: "Международные Путешествия",
           description: "Исследуйте направления по всему миру"
         },
-        b2b: {
-          title: "B2B Услуги",
-          description: "Профессиональные туристические решения для бизнеса"
+        business: {
+          title: "Деловые Поездки",
+          description: "Профессиональные решения для бизнес-путешествий"
         }
       },
       whyChooseUs: {
@@ -1003,7 +1035,23 @@ export const translations = {
       reviews: {
         title: "Отзывы Клиентов",
         subtitle: "Прочитайте отзывы наших довольных клиентов"
-      }
+      },
+      features: {
+        title: "Почему Путешествовать с Нами",
+        subtitle: "Откройте для себя уникальные преимущества наших туристических услуг",
+        explore: {
+          title: "Глобальные Направления",
+          description: "Доступ к мировым направлениям и эксклюзивным впечатлениям"
+        },
+        plan: {
+          title: "Экспертное Планирование",
+          description: "Профессиональное планирование путешествий под ваши потребности"
+        },
+        experience: {
+          title: "Качественный Опыт",
+          description: "Гарантированные незабываемые моменты и премиальный сервис"
+        }
+      },
     },
     menu: {
       home: "Главная",

@@ -63,7 +63,7 @@ export default function ArmeniaTours() {
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[600px]">
         <Image
-          src={getImageUrl('heroArmeniaMain')}
+          src={getImageUrl('heroKhorVirap')}
           alt={t('armeniaTours.hero.title')}
           fill
           className="object-cover"

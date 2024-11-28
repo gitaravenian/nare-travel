@@ -107,16 +107,16 @@ const FooterTitle = ({ children }: { children: React.ReactNode }) => (
 
 export function Footer() {
   return (
-    <footer className="relative bg-[#1A1B1E] overflow-hidden">
+    <footer className="relative bg-[#592641] overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Base gradient layer */}
-        <div className="absolute inset-0 bg-gradient-radial from-[#1A1B1E] via-[#1F2937] to-[#111827]" />
+        <div className="absolute inset-0 bg-gradient-radial from-[#592641] via-[#3b192b] to-[#1f0d15]" />
         
-        {/* Floating Icons */}
+        {/* Floating Icons - keeping same positioning but adjusting opacity color */}
         <div className="absolute inset-0 pointer-events-none select-none">
           <motion.div 
-            className="absolute top-[10%] left-[15%] text-white/5"
+            className="absolute top-[10%] left-[15%] text-[#592641]/5"
             animate={{ 
               y: [-20, 0, -20],
               opacity: [0.02, 0.04, 0.02]
@@ -131,7 +131,7 @@ export function Footer() {
           </motion.div>
 
           <motion.div 
-            className="absolute top-[30%] right-[20%] text-white/5"
+            className="absolute top-[30%] right-[20%] text-[#592641]/5"
             animate={{ 
               y: [0, -20, 0],
               opacity: [0.02, 0.04, 0.02]
@@ -146,7 +146,7 @@ export function Footer() {
           </motion.div>
 
           <motion.div 
-            className="absolute bottom-[20%] left-[25%] text-white/5"
+            className="absolute bottom-[20%] left-[25%] text-[#592641]/5"
             animate={{ 
               y: [-15, 5, -15],
               opacity: [0.02, 0.04, 0.02]
@@ -161,7 +161,7 @@ export function Footer() {
           </motion.div>
 
           <motion.div 
-            className="absolute top-[60%] right-[30%] text-white/5"
+            className="absolute top-[60%] right-[30%] text-[#592641]/5"
             animate={{ 
               y: [5, -15, 5],
               opacity: [0.02, 0.04, 0.02]
@@ -176,7 +176,7 @@ export function Footer() {
           </motion.div>
 
           <motion.div 
-            className="absolute bottom-[40%] left-[40%] text-white/5"
+            className="absolute bottom-[40%] left-[40%] text-[#592641]/5"
             animate={{ 
               y: [-10, 10, -10],
               opacity: [0.02, 0.04, 0.02]
@@ -191,7 +191,7 @@ export function Footer() {
           </motion.div>
 
           <motion.div 
-            className="absolute top-[40%] left-[20%] text-white/5"
+            className="absolute top-[40%] left-[20%] text-[#592641]/5"
             animate={{ 
               y: [0, -20, 0],
               opacity: [0.02, 0.04, 0.02]
@@ -206,7 +206,7 @@ export function Footer() {
           </motion.div>
 
           <motion.div 
-            className="absolute bottom-[30%] right-[25%] text-white/5"
+            className="absolute bottom-[30%] right-[25%] text-[#592641]/5"
             animate={{ 
               y: [-15, 5, -15],
               opacity: [0.02, 0.04, 0.02]
@@ -221,7 +221,7 @@ export function Footer() {
           </motion.div>
 
           <motion.div 
-            className="absolute top-[25%] left-[35%] text-white/5"
+            className="absolute top-[25%] left-[35%] text-[#592641]/5"
             animate={{ 
               y: [-12, 8, -12],
               opacity: [0.02, 0.04, 0.02]
@@ -240,14 +240,14 @@ export function Footer() {
         <div className="absolute inset-0">
           {/* Elegant moving gradients */}
           <div className="absolute inset-0 opacity-30">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-orange-500/10 animate-gradient-x" />
-            <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 via-violet-500/10 to-pink-500/10 animate-gradient-y" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#592641]/10 via-[#773355]/10 to-[#264159]/10 animate-gradient-x" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#3b192b]/10 via-[#592641]/10 to-[#773355]/10 animate-gradient-y" />
           </div>
           
           {/* Subtle floating orbs */}
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-blue-500/5 to-transparent rounded-full filter blur-[80px] animate-float-slow" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-radial from-purple-500/5 to-transparent rounded-full filter blur-[60px] animate-float-delayed" />
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-radial from-orange-500/5 to-transparent rounded-full filter blur-[70px] mix-blend-soft-light animate-pulse-slow" />
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-[#592641]/5 to-transparent rounded-full filter blur-[80px] animate-float-slow" />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-radial from-[#773355]/5 to-transparent rounded-full filter blur-[60px] animate-float-delayed" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-radial from-[#264159]/5 to-transparent rounded-full filter blur-[70px] mix-blend-soft-light animate-pulse-slow" />
         </div>
 
         {/* Noise texture overlay */}
@@ -255,8 +255,8 @@ export function Footer() {
         
         {/* Glass effect overlay */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-black/20 backdrop-blur-[1px]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#3b192b]/5 to-[#1f0d15]/20 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1f0d15]/10 to-transparent" />
         </div>
         
         {/* Shimmer effect */}

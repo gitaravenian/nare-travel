@@ -7,18 +7,18 @@
     --background: 220 33% 98%;
     --foreground: 224 71.4% 4.1%;
     
-    /* Modern Blue */
-    --primary: 217 91% 60%;
-    --primary-hover: 215 90% 50%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Red (#AE1F23) */
+    --primary: 358 69% 40%;
+    --primary-hover: 358 69% 35%;
+    --primary-foreground: 0 0% 100%;
     
-    /* Warm Yellow */
-    --secondary: 47 95% 57%;
-    --secondary-foreground: 220 40% 98%;
+    /* Secondary - Burgundy (#592641) */
+    --secondary: 324 41% 25%;
+    --secondary-foreground: 0 0% 100%;
     
-    /* Soft Red */
-    --accent: 0 91% 71%;
-    --accent-foreground: 210 40% 98%;
+    /* Accent - Lighter Red */
+    --accent: 358 69% 45%;
+    --accent-foreground: 0 0% 100%;
     
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
@@ -30,7 +30,7 @@
     --destructive-foreground: 210 20% 98%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 217 91% 60%;
+    --ring: 358 69% 40%;
     --radius: 0.75rem;
   }
 
@@ -41,19 +41,24 @@
     --card-foreground: 224 71.4% 4.1%;
     --popover: 0 0% 100%;
     --popover-foreground: 224 71.4% 4.1%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 47 95% 57%;
-    --secondary-foreground: 220 40% 98%;
+    --primary: 358 69% 40%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary - Burgundy (#592641) */
+    --secondary: 324 41% 25%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Accent - Lighter Red */
+    --accent: 358 69% 45%;
+    --accent-foreground: 0 0% 100%;
+    
+    --ring: 358 69% 40%;
     --muted: 220 14.3% 95.9%;
     --muted-foreground: 220 8.9% 46.1%;
-    --accent: 0 91% 71%;
-    --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 217 91% 60%;
   }
 }
 
@@ -178,9 +183,12 @@
   /* Feature Cards */
   .feature-card {
     @apply p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
-    background: rgba(255, 255, 255, 0.8);
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.95)
+    );
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .feature-icon-wrapper {

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from "next/image";
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/hooks/use-language';
 import { LanguageSwitcher } from '@/components/language-switcher';
@@ -97,7 +98,8 @@ const ListItem = ({ className, title, href, icon: Icon, ...props }: any) => {
         <Link
           href={href}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-white focus:bg-accent focus:text-white",
+            "hover:[&_p]:text-white [&_p]:transition-colors",
             className
           )}
           {...props}
@@ -131,9 +133,15 @@ export function Navbar() {
       transition={{ duration: 0.5 }}
       className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
     >
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-20 items-center justify-between py-4">
         <Link href="/" className="flex items-center space-x-2">
-          <span className="font-bold">Nare Travel</span>
+          <Image
+            src="/logo/nare logo red.png"
+            alt="Nare Travel"
+            width={120}
+            height={40}
+            className="object-contain"
+          />
         </Link>
 
         {/* Desktop Navigation */}
